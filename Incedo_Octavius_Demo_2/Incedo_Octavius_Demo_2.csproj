@@ -387,7 +387,9 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\img\degree.jpg" />
     <Content Include="Content\img\dummy-profile-pic.jpg" />
+    <Content Include="Content\img\incedo.png" />
     <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\img\octavius-logo.jpg" />
     <Content Include="Content\img\pexels-andrea-piacquadio-3760089.jpg" />
     <Content Include="Content\img\pic1.jpg" />
     <Content Include="Content\img\pic2.jpg" />
