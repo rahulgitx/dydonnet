@@ -35,7 +35,8 @@
                 <b> Search </b>
                 <text>Name : </text>
                 <input type="hidden" value="1" name="id" />
-                @Html.TextBox("search");
+                @*@Html.TextBox("search");*@
+                <input type="text" name="search" id="search" required />
                 <input class="btn btn-info" type="submit" name="submit" value="Search" />
             }
         }

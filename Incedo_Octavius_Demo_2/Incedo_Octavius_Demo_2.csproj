@@ -327,8 +327,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BusinessUserDegreeErrorModelsController.cs" />
     <Compile Include="Controllers\BusinessUserDegreeModelsController.cs" />
     <Compile Include="Controllers\BusinessUserHomeController.cs" />
+    <Compile Include="Controllers\BusinessUserSpecialityErrorModelsController.cs" />
     <Compile Include="Controllers\BusinessUserSpecialtyModelsController.cs" />
     <Compile Include="Controllers\degree_master_tableController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -343,16 +345,20 @@
     <Compile Include="Data\Incedo_Octavius_Demo_2Context.cs" />
     <Compile Include="Data\Incedo_Octavius_Demo_2_BU_Spec_Context.cs" />
     <Compile Include="Data\Incedo_Octavius_Demo_2_degree_master_table_Context.cs" />
+    <Compile Include="Data\Incedo_Octavius_Demo_2_Deg_Err_Context.cs" />
     <Compile Include="Data\Incedo_Octavius_Demo_2_KOL_DATA_Context.cs" />
     <Compile Include="Data\Incedo_Octavius_Demo_2_kol_degree_map_table_Context.cs" />
     <Compile Include="Data\Incedo_Octavius_Demo_2_kol_table_Context.cs" />
     <Compile Include="Data\Incedo_Octavius_Demo_2_KOL_With_Degree_Context.cs" />
     <Compile Include="Data\Incedo_Octavius_Demo_2_Rules_BU_Deg_Context.cs" />
+    <Compile Include="Data\Incedo_Octavius_Demo_2_sp_error_Context.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BusinessUserDegreeErrorModel.cs" />
     <Compile Include="Models\BusinessUserDegreeModel.cs" />
+    <Compile Include="Models\BusinessUserSpecialityErrorModel.cs" />
     <Compile Include="Models\BusinessUserSpecialtyModel.cs" />
     <Compile Include="Models\DegreeModel.cs" />
     <Compile Include="Models\degree_master_table.cs" />
@@ -502,6 +508,18 @@
     <Content Include="Views\BusinessUserHome\Index.cshtml" />
     <Content Include="Views\Shared\_MapBU.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_MapDegree.cshtml" />
+    <Content Include="Views\Shared\_MapSpeciality.cshtml" />
+    <Content Include="Views\BusinessUserDegreeErrorModels\Create.cshtml" />
+    <Content Include="Views\BusinessUserDegreeErrorModels\Delete.cshtml" />
+    <Content Include="Views\BusinessUserDegreeErrorModels\Details.cshtml" />
+    <Content Include="Views\BusinessUserDegreeErrorModels\Edit.cshtml" />
+    <Content Include="Views\BusinessUserDegreeErrorModels\Index.cshtml" />
+    <Content Include="Views\BusinessUserSpecialityErrorModels\Create.cshtml" />
+    <Content Include="Views\BusinessUserSpecialityErrorModels\Delete.cshtml" />
+    <Content Include="Views\BusinessUserSpecialityErrorModels\Details.cshtml" />
+    <Content Include="Views\BusinessUserSpecialityErrorModels\Edit.cshtml" />
+    <Content Include="Views\BusinessUserSpecialityErrorModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
