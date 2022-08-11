@@ -174,6 +174,12 @@
     <Reference Include="OfficeDevPnP.Core, Version=3.28.2012.0, Culture=neutral, PublicKeyToken=5e633289e95c321a, processorArchitecture=MSIL">
       <HintPath>..\packages\SharePointPnPCoreOnline.3.28.2012\lib\net461\OfficeDevPnP.Core.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="SharePointPnP.IdentityModel.Extensions, Version=1.2.4.0, Culture=neutral, PublicKeyToken=5e633289e95c321a, processorArchitecture=MSIL">
       <HintPath>..\packages\SharePointPnP.IdentityModel.Extensions.1.2.4\lib\net45\SharePointPnP.IdentityModel.Extensions.dll</HintPath>
     </Reference>
@@ -321,31 +327,45 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BusinessUserDegreeModelsController.cs" />
+    <Compile Include="Controllers\BusinessUserHomeController.cs" />
+    <Compile Include="Controllers\BusinessUserSpecialtyModelsController.cs" />
     <Compile Include="Controllers\degree_master_tableController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KOLController.cs" />
     <Compile Include="Controllers\KOL_DATAController.cs" />
     <Compile Include="Controllers\kol_degree_map_tableController.cs" />
+    <Compile Include="Controllers\KOL_DetailsController.cs" />
     <Compile Include="Controllers\KOL_ImageController.cs" />
     <Compile Include="Controllers\kol_tableController.cs" />
     <Compile Include="Controllers\KOL_With_DegreeController.cs" />
+    <Compile Include="Controllers\ProfileStatusController.cs" />
     <Compile Include="Data\Incedo_Octavius_Demo_2Context.cs" />
+    <Compile Include="Data\Incedo_Octavius_Demo_2_BU_Spec_Context.cs" />
     <Compile Include="Data\Incedo_Octavius_Demo_2_degree_master_table_Context.cs" />
     <Compile Include="Data\Incedo_Octavius_Demo_2_KOL_DATA_Context.cs" />
     <Compile Include="Data\Incedo_Octavius_Demo_2_kol_degree_map_table_Context.cs" />
     <Compile Include="Data\Incedo_Octavius_Demo_2_kol_table_Context.cs" />
     <Compile Include="Data\Incedo_Octavius_Demo_2_KOL_With_Degree_Context.cs" />
+    <Compile Include="Data\Incedo_Octavius_Demo_2_Rules_BU_Deg_Context.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BusinessUserDegreeModel.cs" />
+    <Compile Include="Models\BusinessUserSpecialtyModel.cs" />
+    <Compile Include="Models\DegreeModel.cs" />
     <Compile Include="Models\degree_master_table.cs" />
     <Compile Include="Models\KOL.cs" />
     <Compile Include="Models\KOL_DATA.cs" />
     <Compile Include="Models\kol_degree_map_table.cs" />
+    <Compile Include="Models\KOL_Details.cs" />
     <Compile Include="Models\KOL_Image.cs" />
     <Compile Include="Models\kol_table.cs" />
     <Compile Include="Models\KOL_With_Degree.cs" />
     <Compile Include="Models\KOL_With_Degree_List.cs" />
+    <Compile Include="Models\ProfileStatusModel.cs" />
+    <Compile Include="Models\SpecialtyModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -365,7 +385,14 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\img\degree.jpg" />
     <Content Include="Content\img\dummy-profile-pic.jpg" />
+    <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\img\pexels-andrea-piacquadio-3760089.jpg" />
+    <Content Include="Content\img\pic1.jpg" />
+    <Content Include="Content\img\pic2.jpg" />
+    <Content Include="Content\img\pic3.jpg" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -454,6 +481,22 @@
     <Content Include="Views\KOL_With_Degree\Edit.cshtml" />
     <Content Include="Views\KOL_With_Degree\Index.cshtml" />
     <Content Include="Views\KOL_Image\Index.cshtml" />
+    <Content Include="Views\KOL_Details\Index.cshtml" />
+    <Content Include="Views\KOL_Details\Details.cshtml" />
+    <Content Include="Views\BusinessUserHome\Index.cshtml" />
+    <Content Include="Views\BusinessUserDegreeModels\Create.cshtml" />
+    <Content Include="Views\BusinessUserDegreeModels\Delete.cshtml" />
+    <Content Include="Views\BusinessUserDegreeModels\Details.cshtml" />
+    <Content Include="Views\BusinessUserDegreeModels\Edit.cshtml" />
+    <Content Include="Views\BusinessUserDegreeModels\Index.cshtml" />
+    <Content Include="Views\BusinessUserSpecialtyModels\Create.cshtml" />
+    <Content Include="Views\BusinessUserSpecialtyModels\Delete.cshtml" />
+    <Content Include="Views\BusinessUserSpecialtyModels\Details.cshtml" />
+    <Content Include="Views\BusinessUserSpecialtyModels\Edit.cshtml" />
+    <Content Include="Views\BusinessUserSpecialtyModels\Index.cshtml" />
+    <Content Include="Views\ProfileStatus\Index.cshtml" />
+    <Content Include="Views\KOL_Image\ProfileIndex.cshtml" />
+    <Content Include="Views\KOL_Image\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
