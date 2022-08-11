@@ -22,6 +22,10 @@ namespace Incedo_Octavius_Demo_2.Controllers
         List<KOL_Image> kolList = new List<KOL_Image>();
 
         int PageSizeKOL = 12;
+        int ta_id;
+        int user_type;
+
+
 
         int chosenProfileID;
         List<int> KOL_Count = new List<int>();
@@ -39,7 +43,7 @@ namespace Incedo_Octavius_Demo_2.Controllers
             //KOL_With_Degree_List kolList = new KOL_With_Degree_List();
             string constr = ConfigurationManager.ConnectionStrings["Incedo_Octavius_Demo_2_kol_table_Context"].ConnectionString;
             GetProfiles();
-            
+            GetTA(Convert.ToInt32(Session["ta_id"]));
 
             for (int i = profiles.Count; i > 0; i--)
             {
@@ -53,7 +57,8 @@ namespace Incedo_Octavius_Demo_2.Controllers
                         cmd.Connection = dbConnection;
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandText = "ProfileCount";
-                        cmd.Parameters.AddWithValue("id", i-1);
+                        cmd.Parameters.AddWithValue("profile_id", i-1);
+                        cmd.Parameters.AddWithValue("TA_ID", Convert.ToInt32(Session["ta_id"]));
                         //cmd.ExecuteReader();
 
                         MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
@@ -77,22 +82,34 @@ namespace Incedo_Octavius_Demo_2.Controllers
             return View(profiles);
         }
 
+
+
         // GET: KOL_Image
         public ActionResult Index(int? i)
         {
+            int profile;
             Console.WriteLine("Inside Index GEt");
-            int profile = 2;
+            if(Session["selectedProfileID"]!=null)
+            {
+                profile = Convert.ToInt32(Session["selectedProfileID"]);
+            }
+            else
+            {
+                profile = 2;
+            }
             List<KOL_Image> kolNameImageList = new List<KOL_Image>();
             string constr = ConfigurationManager.ConnectionStrings["Incedo_Octavius_Demo_2_kol_table_Context"].ConnectionString;
+            GetTA(Convert.ToInt32(Session["ta_id"]));
             GetProfiles();
             SetProfileId(profile);
+            GetKOLNameImage(profile);
             ViewBag.Profiles = profiles;
             ViewBag.Profile = profiles[chosenProfileID].ProfileStatus;
             ViewBag.ProfileID = profiles[chosenProfileID].ProfileStatusID;
             Session["Profile"] = profiles[chosenProfileID].ProfileStatus;
             //chosenProfileID = profile;
             // Stored Procedures
-            using (MySqlConnection dbConnection = new MySqlConnection(constr))
+            /*using (MySqlConnection dbConnection = new MySqlConnection(constr))
             {
                 try
                 {
@@ -128,11 +145,11 @@ namespace Incedo_Octavius_Demo_2.Controllers
                     Console.WriteLine("Error : " + Ex.Message);
                 }
 
-            }
+            }*/
             //profiles = ViewBag.Profiles;
             //ViewBag.Profile = profiles[chosenProfileID].ProfileStatus;
-            kolList = kolNameImageList;
-            return View(kolNameImageList.ToPagedList(i ?? 1, PageSizeKOL));
+            //kolList = kolNameImageList;
+            return View(kolList.ToPagedList(i ?? 1, PageSizeKOL));
         }
 
         
@@ -141,6 +158,8 @@ namespace Incedo_Octavius_Demo_2.Controllers
         public ActionResult Index(int profile, int? i)
         {
             Console.WriteLine("Inside index post");
+            Session["selectedProfileID"] = profile;
+            GetTA(Convert.ToInt32(Session["ta_id"]));
             GetProfiles();
             SetProfileId(profile);
             GetKOLNameImage(profile);
@@ -148,7 +167,6 @@ namespace Incedo_Octavius_Demo_2.Controllers
             ViewBag.Profile = profiles[chosenProfileID].ProfileStatus;
             ViewBag.ProfileID = profiles[chosenProfileID].ProfileStatusID;
             Session["Profile"] = profiles[chosenProfileID].ProfileStatus;
-            
             //chosenProfileID = profile;
             // Stored Procedures
 
@@ -161,6 +179,7 @@ namespace Incedo_Octavius_Demo_2.Controllers
         [HttpPost]
         public ActionResult Search(string search, int? i)
         {
+            GetTA(Convert.ToInt32(Session["ta_id"]));
             SetProfileId(Convert.ToInt32(Session["profileID"]));
             GetKOLNameImage(chosenProfileID);
             List<KOL_Image> matchKOLs = new List<KOL_Image>();
@@ -173,6 +192,8 @@ namespace Incedo_Octavius_Demo_2.Controllers
         {
             List<KOL_Image> kolNameImageList = new List<KOL_Image>();
             string constr = ConfigurationManager.ConnectionStrings["Incedo_Octavius_Demo_2_kol_table_Context"].ConnectionString;
+            GetTA(Convert.ToInt32(Session["ta_id"]));
+            ta_id = Convert.ToInt32(Session["ta_id"]);
             using (MySqlConnection dbConnection = new MySqlConnection(constr))
             {
                 try
@@ -181,9 +202,11 @@ namespace Incedo_Octavius_Demo_2.Controllers
                     MySqlCommand cmd = new MySqlCommand();
                     cmd.Connection = dbConnection;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    //cmd.CommandText = "KOL_Name_Image";
-                    cmd.CommandText = "KOL_Image";
+                    cmd.CommandText = "KOL_Name_Image";
+                    //cmd.CommandText = "KOL_Image";
                     cmd.Parameters.AddWithValue("profileStatus", profile);
+                    cmd.Parameters.AddWithValue("TA_ID", ta_id);
+
                     //cmd.ExecuteReader();
 
                     MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
@@ -220,7 +243,7 @@ namespace Incedo_Octavius_Demo_2.Controllers
             List<ProfileStatusModel> innerProfiles = new List<ProfileStatusModel>();
             using (MySqlConnection con = new MySqlConnection(constr))
             {
-                string query = "SELECT * FROM octavius_db.profile_status_master_table order by ProfileStatusID desc";
+                string query = "SELECT * FROM octavius.ui_pr_master order by profile_status_id desc";
                 using (MySqlCommand cmd = new MySqlCommand(query))
                 {
                     cmd.Connection = con;
@@ -233,8 +256,8 @@ namespace Incedo_Octavius_Demo_2.Controllers
 
                             innerProfiles.Add(new ProfileStatusModel
                             {
-                                ProfileStatusID = Convert.ToInt32(sdr["ProfileStatusID"]),
-                                ProfileStatus = sdr["ProfleStatus"].ToString(),
+                                ProfileStatusID = Convert.ToInt32(sdr["profile_status_id"]),
+                                ProfileStatus = sdr["profile_status"].ToString(),
 
                             });
 
@@ -248,7 +271,8 @@ namespace Incedo_Octavius_Demo_2.Controllers
 
         public void SetProfileId(int id)
         {
-            if(id==0)
+            Session["selectedProfileID"] = id;
+            if (id==0)
             {
                 id = 2;
             }
@@ -259,5 +283,32 @@ namespace Incedo_Octavius_Demo_2.Controllers
             Session["profileID"] = id;
             chosenProfileID = id;
         }
+
+        public void GetTA(int id)
+        {
+            string ta = "";
+            string constr = ConfigurationManager.ConnectionStrings["Incedo_Octavius_Demo_2_kol_table_Context"].ConnectionString;
+            List<ProfileStatusModel> innerProfiles = new List<ProfileStatusModel>();
+            using (MySqlConnection con = new MySqlConnection(constr))
+            {
+                string query = $"SELECT ta_name from octavius.ta_master where ta_id = {id}";
+                using (MySqlCommand cmd = new MySqlCommand(query))
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    using (MySqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            ta = sdr["ta_name"].ToString();
+
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            Session["ta_name"] = ta;
+        }
+        
     }
 }

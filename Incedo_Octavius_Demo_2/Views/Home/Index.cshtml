@@ -1,5 +1,6 @@
 ﻿@{
     //Layout = null;
+    ViewData["Title"] = "Octavius - Index";
 }
 <!DOCTYPE html>
 <html>
@@ -13,7 +14,7 @@
 </head>
 
 <body>
-    <section class="h-100 gradient-form" style="background-color: #eee;">
+    <section class="h-100 gradient-form" style="background-color: #fff;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-xl-10">
@@ -23,45 +24,47 @@
                                 <div class="card-body p-md-5 mx-md-4">
 
                                     <div class="text-center">
-                                        <img src="~/Content/img/logo.jpg"
+                                        <img src="~/Content/img/octavius-logo.jpg"
                                              style="width: 185px;" alt="logo">
                                         <h4 class="mt-1 mb-5 pb-1">Octavius</h4>
                                     </div>
 
-                                    <form>
+                                    @*<form action="Home/Index" method="post">*@
+                                    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                                    {
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example11">Username</label>
-                                            <input type="text" id="form2Example11" class="form-control"
+                                            <input name="username" type="text" id="form2Example11" class="form-control" required
                                                    placeholder="Username" />
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example22">Password</label>
-                                            <input type="password" id="form2Example22" class="form-control" />
+                                            <input name="password" type="password" id="form2Example22" class="form-control" required />
                                         </div>
 
 
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">
+                                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">
                                                 Log
                                                 in
                                             </button>
                                         </div>
 
-                                        
+                                        @ViewBag.ta_id
+                                        @ViewBag.user_type
+                                    }
 
-                                    </form>
+                                    @*</form>*@
 
                                 </div>
                             </div>
                             <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
                                 <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                                    <h4 class="mb-4">We are more than just a company</h4>
+                                    <h4 class="mb-4">Octavius</h4>
                                     <p class="small mb-0">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        In this project we will be working on KOL Management that in turn will help us to reach to KOLs effectively.
                                     </p>
                                 </div>
                             </div>

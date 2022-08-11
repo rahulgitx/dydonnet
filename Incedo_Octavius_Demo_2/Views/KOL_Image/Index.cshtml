@@ -1,6 +1,6 @@
 ﻿@model IPagedList<Incedo_Octavius_Demo_2.Models.KOL_Image>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "KOL - Index";
 }
 @using PagedList.Mvc;
 @using PagedList;
@@ -23,7 +23,7 @@
         }
 
         <h2 class="text-danger text-center alert-heading">
-            @ViewBag.Profile KOL
+            @Session["ta_name"] - @ViewBag.Profile KOL
         </h2>
         <br />
     </div>

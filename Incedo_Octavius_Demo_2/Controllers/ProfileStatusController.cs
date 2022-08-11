@@ -26,7 +26,7 @@ namespace Incedo_Octavius_Demo_2.Controllers
             string constr = ConfigurationManager.ConnectionStrings["Incedo_Octavius_Demo_2_kol_table_Context"].ConnectionString;
             using (MySqlConnection con = new MySqlConnection(constr))
             {
-                string query = "SELECT * FROM octavius_db.profile_status_master_table";
+                string query = "SELECT * FROM octavius.ui_pr_master";
                 using (MySqlCommand cmd = new MySqlCommand(query))
                 {
                     cmd.Connection = con;
@@ -39,8 +39,8 @@ namespace Incedo_Octavius_Demo_2.Controllers
 
                             profiles.Add(new ProfileStatusModel
                             {
-                                ProfileStatusID = Convert.ToInt32(sdr["ProfileStatusID"]),
-                                ProfileStatus = sdr["ProfleStatus"].ToString()
+                                ProfileStatusID = Convert.ToInt32(sdr["profile_status_id"]),
+                                ProfileStatus = sdr["profile_status"].ToString()
                             });
 
                         }

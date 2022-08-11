@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Incedo_Octavius_Demo_2.Models.KOL_Image>
 @{
-    ViewBag.Title = "Search";
+    ViewBag.Title = "KOL - Search";
 }
 
 
@@ -19,7 +19,7 @@
         @{ Html.RenderAction("ProfileIndex"); }
 
         <h2 class="text-danger text-center alert-heading">
-            @Session["Profile"] KOL
+            @Session["ta_name"] - @Session["Profile"] KOL
         </h2>
         <br />
     </div>

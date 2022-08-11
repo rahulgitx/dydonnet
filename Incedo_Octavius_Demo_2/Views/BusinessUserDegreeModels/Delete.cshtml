@@ -1,7 +1,7 @@
 ﻿@model Incedo_Octavius_Demo_2.Models.BusinessUserDegreeModel
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "BU Degree - Delete";
 }
 
 <h2>Delete</h2>
@@ -33,7 +33,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-primary" /> |
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

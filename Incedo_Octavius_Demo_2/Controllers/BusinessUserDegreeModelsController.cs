@@ -48,10 +48,10 @@ namespace Incedo_Octavius_Demo_2.Controllers
                         for (int iCout = 0; iCout < dataSetObject.Tables[0].Rows.Count; iCout++)
                         {
                             BusinessUserDegreeModel RuleDegBU = new BusinessUserDegreeModel();
-                            RuleDegBU.MapID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["MapID"]);
-                            RuleDegBU.DegreeID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["DegreeID"]);
+                            RuleDegBU.MapID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["id"]);
+                            RuleDegBU.DegreeID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["degree_id"]);
                             RuleDegBU.Degree_Map = dataSetObject.Tables[0].Rows[iCout]["Degree_Map"].ToString();
-                            RuleDegBU.Parent_Degree_ID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["Parent_Degree_ID"]);
+                            RuleDegBU.Parent_Degree_ID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["degree_id_master"]);
                             RuleDegBU.Degree_Master = dataSetObject.Tables[0].Rows[iCout]["Degree_Master"].ToString();
 
                             RuleDegBU_List.Add(RuleDegBU);
@@ -179,7 +179,7 @@ namespace Incedo_Octavius_Demo_2.Controllers
                     cmd.Connection = dbConnection;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "Rules_BU_Deg_pm";
-                    cmd.Parameters.AddWithValue("id", id);
+                    cmd.Parameters.AddWithValue("q_id", id);
 
                     MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
                     DataSet dataSetObject = new DataSet();
@@ -190,10 +190,10 @@ namespace Incedo_Octavius_Demo_2.Controllers
                         for (int iCout = 0; iCout < dataSetObject.Tables[0].Rows.Count; iCout++)
                         {
                             BusinessUserDegreeModel RuleDegBU = new BusinessUserDegreeModel();
-                            RuleDegBU.MapID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["MapID"]);
-                            RuleDegBU.DegreeID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["DegreeID"]);
+                            RuleDegBU.MapID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["id"]);
+                            RuleDegBU.DegreeID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["degree_id"]);
                             RuleDegBU.Degree_Map = dataSetObject.Tables[0].Rows[iCout]["Degree_Map"].ToString();
-                            RuleDegBU.Parent_Degree_ID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["Parent_Degree_ID"]);
+                            RuleDegBU.Parent_Degree_ID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["degree_id_master"]);
                             RuleDegBU.Degree_Master = dataSetObject.Tables[0].Rows[iCout]["Degree_Master"].ToString();
 
                             RuleDegBU_List.Add(RuleDegBU);
@@ -315,10 +315,10 @@ namespace Incedo_Octavius_Demo_2.Controllers
                         for (int iCout = 0; iCout < dataSetObject.Tables[0].Rows.Count; iCout++)
                         {
                             BusinessUserDegreeModel RuleDegBU = new BusinessUserDegreeModel();
-                            RuleDegBU.MapID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["MapID"]);
-                            RuleDegBU.DegreeID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["DegreeID"]);
+                            RuleDegBU.MapID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["id"]);
+                            RuleDegBU.DegreeID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["degree_id"]);
                             RuleDegBU.Degree_Map = dataSetObject.Tables[0].Rows[iCout]["Degree_Map"].ToString();
-                            RuleDegBU.Parent_Degree_ID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["Parent_Degree_ID"]);
+                            RuleDegBU.Parent_Degree_ID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["degree_id_master"]);
                             RuleDegBU.Degree_Master = dataSetObject.Tables[0].Rows[iCout]["Degree_Master"].ToString();
 
                             RuleDegBU_List.Add(RuleDegBU);
@@ -389,7 +389,7 @@ namespace Incedo_Octavius_Demo_2.Controllers
             {
                 try
                 {
-                    string query = "Select DegreeID, Degree from degree_master_table";
+                    string query = "Select degree_id, degree from ui_dg_master";
                     using (MySqlCommand cmd = new MySqlCommand(query))
                     {
                         cmd.Connection = dbConnection;
@@ -400,8 +400,8 @@ namespace Incedo_Octavius_Demo_2.Controllers
                             {
                                 items.Add(new DegreeModel
                                 {
-                                    DegreeID = Convert.ToInt32(sdr["DegreeID"]),
-                                    Degree = sdr["Degree"].ToString()
+                                    DegreeID = Convert.ToInt32(sdr["degree_id"]),
+                                    Degree = sdr["degree"].ToString()
                                 });
 
                             }

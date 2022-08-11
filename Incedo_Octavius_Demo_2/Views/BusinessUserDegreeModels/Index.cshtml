@@ -1,7 +1,7 @@
 ﻿@model IPagedList<Incedo_Octavius_Demo_2.Models.BusinessUserDegreeModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "BU Degree - Index";
 }
 @using PagedList.Mvc;
 @using PagedList;
@@ -14,7 +14,7 @@
 <h2>Degree Business Rules</h2>
 <br/>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "btn btn-success ", @role = "button" })
 </p>
 <table class="table">
     <tr>
@@ -36,9 +36,9 @@
             @Html.DisplayFor(modelItem => item.Degree_Master)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MapID }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.MapID }, htmlAttributes: new {@class = "btn btn-primary ", @role = "button" })
             @*@Html.ActionLink("Details", "Details", new { id=item.MapID }) |*@
-            @Html.ActionLink("Delete", "Delete", new { id=item.MapID })
+            @Html.ActionLink("Delete", "Delete", new { id = item.MapID } , htmlAttributes: new {@class = "btn btn-danger ", @role = "button" })
         </td>
     </tr>
 }

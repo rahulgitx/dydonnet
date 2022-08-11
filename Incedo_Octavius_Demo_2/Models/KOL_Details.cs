@@ -21,5 +21,6 @@ namespace Incedo_Octavius_Demo_2.Models
         public string Degree { get; set; }
         public string SpecialityName { get; set; }
         public string Image_Link { get; set; }
+        public string ta_name { get; set; }
     }
 }

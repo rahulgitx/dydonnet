@@ -24,7 +24,7 @@ namespace Incedo_Octavius_Demo_2.Controllers
             string constr = ConfigurationManager.ConnectionStrings["Incedo_Octavius_Demo_2_degree_master_table_Context"].ConnectionString;
             using (MySqlConnection con = new MySqlConnection(constr))
             {
-                string query = "SELECT * FROM octavius_db.degree_master_table";
+                string query = "SELECT * FROM octavius.ui_dg_master";
                 using (MySqlCommand cmd = new MySqlCommand(query))
                 {
                     cmd.Connection = con;
@@ -37,8 +37,8 @@ namespace Incedo_Octavius_Demo_2.Controllers
 
                             degrees.Add(new degree_master_table
                             {
-                                DegreeID = Convert.ToInt32(sdr["DegreeID"]),
-                                Degree = sdr["Degree"].ToString()
+                                DegreeID = Convert.ToInt32(sdr["degree_id"]),
+                                Degree = sdr["degree"].ToString()
 
                             });
                         }

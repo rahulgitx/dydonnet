@@ -45,10 +45,10 @@ namespace Incedo_Octavius_Demo_2.Controllers
                         for (int iCout = 0; iCout < dataSetObject.Tables[0].Rows.Count; iCout++)
                         {
                             BusinessUserSpecialtyModel SpecBU = new BusinessUserSpecialtyModel();
-                            SpecBU.MapID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["MapID"]);
+                            SpecBU.MapID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["id"]);
                             SpecBU.SpecialtyMap = dataSetObject.Tables[0].Rows[iCout]["SpecialtyMap"].ToString();
-                            SpecBU.Parent_Specialty_ID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["Parent_Speacialty_ID"]);
-                            SpecBU.SpecialtyID= Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["SpecialityID"]);
+                            SpecBU.Parent_Specialty_ID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["speciality_id_master"]);
+                            SpecBU.SpecialtyID= Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["speciality_id"]);
                             SpecBU.SpecialtyMaster = dataSetObject.Tables[0].Rows[iCout]["SpecialtyMaster"].ToString();
 
                             Spec_BU_List.Add(SpecBU);
@@ -177,10 +177,10 @@ namespace Incedo_Octavius_Demo_2.Controllers
                         for (int iCout = 0; iCout < dataSetObject.Tables[0].Rows.Count; iCout++)
                         {
                             BusinessUserSpecialtyModel SpecBU = new BusinessUserSpecialtyModel();
-                            SpecBU.MapID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["MapID"]);
+                            SpecBU.MapID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["id"]);
                             SpecBU.SpecialtyMap = dataSetObject.Tables[0].Rows[iCout]["SpecialtyMap"].ToString();
-                            SpecBU.Parent_Specialty_ID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["Parent_Speacialty_ID"]);
-                            SpecBU.SpecialtyID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["SpecialityID"]);
+                            SpecBU.Parent_Specialty_ID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["speciality_id_master"]);
+                            SpecBU.SpecialtyID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["speciality_id"]);
                             SpecBU.SpecialtyMaster = dataSetObject.Tables[0].Rows[iCout]["SpecialtyMaster"].ToString();
 
                             SpecBU_List.Add(SpecBU);
@@ -210,8 +210,8 @@ namespace Incedo_Octavius_Demo_2.Controllers
             if (ModelState.IsValid)
             {
                 ViewBag.map_id = businessUserSpecialtyModel.MapID;
-                ViewBag.deg_text = businessUserSpecialtyModel.SpecialtyMap;
-                ViewBag.deg_id = businessUserSpecialtyModel.Parent_Specialty_ID;
+                ViewBag.spec_text = businessUserSpecialtyModel.SpecialtyMap;
+                ViewBag.spec_id = businessUserSpecialtyModel.Parent_Specialty_ID;
                 /*if (businessUserDegreeModel == null)
                 {
                     return HttpNotFound();
@@ -266,7 +266,7 @@ namespace Incedo_Octavius_Demo_2.Controllers
                     cmd.Connection = dbConnection;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "Rules_BU_Spec_pm";
-                    cmd.Parameters.AddWithValue("id", id);
+                    cmd.Parameters.AddWithValue("q_id", id);
 
                     MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
                     DataSet dataSetObject = new DataSet();
@@ -277,10 +277,10 @@ namespace Incedo_Octavius_Demo_2.Controllers
                         for (int iCout = 0; iCout < dataSetObject.Tables[0].Rows.Count; iCout++)
                         {
                             BusinessUserSpecialtyModel SpecBU = new BusinessUserSpecialtyModel();
-                            SpecBU.MapID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["MapID"]);
+                            SpecBU.MapID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["id"]);
                             SpecBU.SpecialtyMap = dataSetObject.Tables[0].Rows[iCout]["SpecialtyMap"].ToString();
-                            SpecBU.Parent_Specialty_ID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["Parent_Speacialty_ID"]);
-                            SpecBU.SpecialtyID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["SpecialityID"]);
+                            SpecBU.Parent_Specialty_ID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["speciality_id_master"]);
+                            SpecBU.SpecialtyID = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["speciality_id"]);
                             SpecBU.SpecialtyMaster = dataSetObject.Tables[0].Rows[iCout]["SpecialtyMaster"].ToString();
 
                             SpecBU_List.Add(SpecBU);
@@ -348,7 +348,7 @@ namespace Incedo_Octavius_Demo_2.Controllers
             {
                 try
                 {
-                    string query = "Select SpecialityID, SpecialityName from speciality_master_table";
+                    string query = "Select speciality_id, speciality from ui_sp_master";
                     using (MySqlCommand cmd = new MySqlCommand(query))
                     {
                         cmd.Connection = dbConnection;
@@ -359,8 +359,8 @@ namespace Incedo_Octavius_Demo_2.Controllers
                             {
                                 items.Add(new SpecialtyModel
                                 {
-                                    SpecialtyID = Convert.ToInt32(sdr["SpecialityID"]),
-                                    SpecialtyName = sdr["SpecialityName"].ToString()
+                                    SpecialtyID = Convert.ToInt32(sdr["speciality_id"]),
+                                    SpecialtyName = sdr["speciality"].ToString()
                                 });
 
                             }

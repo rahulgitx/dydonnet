@@ -54,6 +54,7 @@ namespace Incedo_Octavius_Demo_2.Controllers
                             KolDetails.Degree = dataSetObject.Tables[0].Rows[iCout]["Degree"].ToString();
                             KolDetails.SpecialityName = dataSetObject.Tables[0].Rows[iCout]["SpecialityName"].ToString();
                             KolDetails.Image_Link = dataSetObject.Tables[0].Rows[iCout]["Image_Link"].ToString();
+                            KolDetails.ta_name = dataSetObject.Tables[0].Rows[iCout]["ta_name"].ToString();
 
                         
 
@@ -114,10 +115,11 @@ namespace Incedo_Octavius_Demo_2.Controllers
                                 KolDetails.City = dataSetObject.Tables[0].Rows[iCout]["City"].ToString();
                                 KolDetails.State = dataSetObject.Tables[0].Rows[iCout]["State"].ToString();
                                 KolDetails.Zip = Convert.ToInt32(dataSetObject.Tables[0].Rows[iCout]["Zip"]);
-                                KolDetails.ProfileStatus = dataSetObject.Tables[0].Rows[iCout]["ProfleStatus"].ToString();
-                                KolDetails.Degree = dataSetObject.Tables[0].Rows[iCout]["Degree"].ToString();
-                                KolDetails.SpecialityName = dataSetObject.Tables[0].Rows[iCout]["SpecialityName"].ToString();
+                                KolDetails.ProfileStatus = dataSetObject.Tables[0].Rows[iCout]["profile_status"].ToString();
+                                KolDetails.Degree = dataSetObject.Tables[0].Rows[iCout]["degree"].ToString();
+                                KolDetails.SpecialityName = dataSetObject.Tables[0].Rows[iCout]["speciality"].ToString();
                                 KolDetails.Image_Link = dataSetObject.Tables[0].Rows[iCout]["Image_Link"].ToString();
+                                KolDetails.ta_name = dataSetObject.Tables[0].Rows[iCout]["ta_name"].ToString();
 
 
 
