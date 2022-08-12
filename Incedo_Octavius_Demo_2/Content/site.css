@@ -19,3 +19,9 @@
         border-bottom-right-radius: .3rem;
     }
 }
+
+* {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
