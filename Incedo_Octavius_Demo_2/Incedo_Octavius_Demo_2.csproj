@@ -520,6 +520,7 @@
     <Content Include="Views\BusinessUserSpecialityErrorModels\Details.cshtml" />
     <Content Include="Views\BusinessUserSpecialityErrorModels\Edit.cshtml" />
     <Content Include="Views\BusinessUserSpecialityErrorModels\Index.cshtml" />
+    <Content Include="Views\Home\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

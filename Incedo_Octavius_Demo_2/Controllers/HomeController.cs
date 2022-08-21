@@ -17,6 +17,12 @@ namespace Incedo_Octavius_Demo_2.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Index2()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Index(string username, string password)
         {
