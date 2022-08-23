@@ -391,8 +391,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\img\bin.png" />
+    <Content Include="Content\img\create.png" />
+    <Content Include="Content\img\create-3.png" />
     <Content Include="Content\img\degree.jpg" />
     <Content Include="Content\img\dummy-profile-pic.jpg" />
+    <Content Include="Content\img\edit-text.png" />
     <Content Include="Content\img\incedo.png" />
     <Content Include="Content\img\logo.jpg" />
     <Content Include="Content\img\octavius-logo.jpg" />

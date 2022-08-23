@@ -31,7 +31,7 @@ namespace Incedo_Octavius_Demo_2.Controllers
             {
                 ViewBag.ta_id = Session["ta_id"];
                 ViewBag.user_type = Session["user_type"];
-                return (RedirectToAction("Index", "BusinessUserDegreeModels"));
+                return (RedirectToAction("Index", "BusinessUserDegreeErrorModels"));
             }
             else if (user_type==1)
             {
